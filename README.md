@@ -1,13 +1,13 @@
 # Todo List App
 
-Une application simple de gestion de tâches (To-do List) construite avec React.
+Une application moderne de gestion de tâches (To-do List) construite avec React.
 
 ## Fonctionnalités
 
 - Ajouter des tâches.
 - Marquer des tâches comme complètes.
 - Supprimer des tâches.
-- Interface simple et intuitive.
+- Interface moderne et réactive.
 
 ## Installation
 

@@ -12,7 +12,7 @@ const TodoApp = () => {
   const [newTask, setNewTask] = useState('');
 
   /**
-   * Ajoute une nouvelle tâche à la liste des tâches
+   * Ajoute une nouvelle tâche à la liste des tâches.
    */
   const addTask = () => {
     if (newTask.trim()) {
@@ -23,7 +23,7 @@ const TodoApp = () => {
   };
 
   /**
-   * Modifie l'état de complétion d'une tâche (marque comme terminée ou non)
+   * Modifie l'état de complétion d'une tâche (marque comme terminée ou non).
    * @param {number} id - Identifiant de la tâche
    */
   const toggleTask = (id) => {
@@ -34,7 +34,7 @@ const TodoApp = () => {
   };
 
   /**
-   * Supprime une tâche de la liste
+   * Supprime une tâche de la liste.
    * @param {number} id - Identifiant de la tâche
    */
   const deleteTask = (id) => {
@@ -52,7 +52,7 @@ const TodoApp = () => {
         placeholder="Ajouter une tâche"
       />
       <button onClick={addTask}>Ajouter</button>
-      
+
       <TodoList tasks={tasks} onToggle={toggleTask} onDelete={deleteTask} />
     </div>
   );
