@@ -1,43 +1,39 @@
 /* ================================================
-   GESTIONNAIRE DE TÂCHES — Design Moderne & Élégant
+   GESTIONNAIRE DE TÂCHES — Thème Mahando Tour
    ================================================ */
 
 @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap');
 
-/* Reset */
 *, *::before, *::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* ---- Variables ---- */
 :root {
-  --bg-from: #ff6b35;
-  --bg-to: #f7c59f;
-  --card-bg: rgba(255, 255, 255, 0.92);
-  --card-border: rgba(255, 255, 255, 0.6);
-  --text-dark: #1a1a2e;
-  --text-muted: #7a7a9d;
-  --accent: #ff4500;
-  --accent-hover: #e03a00;
-  --green: #22c55e;
-  --green-hover: #16a34a;
-  --red: #ef4444;
-  --red-hover: #dc2626;
-  --radius-lg: 20px;
-  --radius-md: 12px;
+  --grad-bg-1: #0f0c29;
+  --grad-bg-2: #302b63;
+  --grad-bg-3: #24243e;
+  --grad-midi: linear-gradient(135deg, #f7971e, #ffd200);
+  --grad-purple: linear-gradient(135deg, #4776e6, #8e54e9);
+  --card-bg: linear-gradient(160deg, rgba(255,255,255,0.07), rgba(255,255,255,0.02));
+  --border: rgba(255, 255, 255, 0.1);
+  --text: #f0eeff;
+  --muted: rgba(240, 238, 255, 0.45);
+  --accent: #ffd200;
+  --green: #38ef7d;
+  --green-dark: #11998e;
+  --red: #ff6b6b;
+  --red-dark: #e63946;
+  --radius-lg: 24px;
+  --radius-md: 14px;
   --radius-sm: 8px;
-  --shadow-card: 0 25px 60px rgba(0, 0, 0, 0.18), 0 8px 20px rgba(0, 0, 0, 0.1);
-  --shadow-btn: 0 4px 15px rgba(34, 197, 94, 0.4);
-  --shadow-del: 0 4px 15px rgba(239, 68, 68, 0.4);
   --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* ---- Body ---- */
 body {
   font-family: 'DM Sans', sans-serif;
-  background: linear-gradient(135deg, var(--bg-from) 0%, #ffb347 50%, var(--bg-to) 100%);
+  background: linear-gradient(135deg, var(--grad-bg-1), var(--grad-bg-2), var(--grad-bg-3));
   min-height: 100vh;
   display: flex;
   justify-content: center;
@@ -45,75 +41,93 @@ body {
   padding: 24px;
   position: relative;
   overflow-x: hidden;
+  color: var(--text);
 }
 
-/* Decorative blobs */
+/* Orbes flottantes */
 body::before,
 body::after {
   content: '';
   position: fixed;
   border-radius: 50%;
-  filter: blur(80px);
-  opacity: 0.35;
+  filter: blur(90px);
+  opacity: 0.22;
   pointer-events: none;
   z-index: 0;
+  animation: drift 14s ease-in-out infinite alternate;
 }
 body::before {
-  width: 500px;
-  height: 500px;
-  background: #ff2d00;
-  top: -120px;
-  left: -100px;
+  width: 520px;
+  height: 520px;
+  background: #8e54e9;
+  top: -130px;
+  right: -100px;
 }
 body::after {
-  width: 400px;
-  height: 400px;
-  background: #ffd700;
+  width: 420px;
+  height: 420px;
+  background: #f7971e;
   bottom: -100px;
-  right: -80px;
+  left: -80px;
+  animation-duration: 17s;
+  animation-direction: alternate-reverse;
 }
 
-/* ---- Card ---- */
+@keyframes drift {
+  from { transform: translate(0, 0); }
+  to   { transform: translate(40px, 30px); }
+}
+
+/* ---- Card principale ---- */
 .todo-app {
   position: relative;
   z-index: 1;
   background: var(--card-bg);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid var(--card-border);
+  border: 1px solid var(--border);
   padding: 44px 48px;
   border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-card);
+  box-shadow: 0 30px 80px rgba(0,0,0,0.45), 0 8px 24px rgba(0,0,0,0.25);
   width: 100%;
   max-width: 620px;
-  animation: slideUp 0.5s cubic-bezier(0.4, 0, 0.2, 1) both;
+  animation: slideUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) both;
 }
 
 @keyframes slideUp {
-  from { opacity: 0; transform: translateY(30px); }
+  from { opacity: 0; transform: translateY(32px); }
   to   { opacity: 1; transform: translateY(0); }
 }
 
-/* ---- Title ---- */
+/* ---- Titre ---- */
 h1 {
   font-family: 'Syne', sans-serif;
   font-size: 2.8rem;
   font-weight: 800;
-  color: var(--text-dark);
+  background: linear-gradient(90deg, #ffd200, #f7971e, #ff6ed8, #8e54e9);
+  background-size: 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 5s linear infinite;
   margin-bottom: 32px;
   line-height: 1.1;
   letter-spacing: -0.5px;
-  position: relative;
 }
 
 h1::after {
   content: '';
   display: block;
-  width: 48px;
-  height: 4px;
-  background: linear-gradient(90deg, var(--accent), #ff9a3c);
+  width: 52px;
+  height: 3px;
+  background: linear-gradient(90deg, #ffd200, #8e54e9);
   border-radius: 4px;
-  margin-top: 10px;
+  margin-top: 12px;
+}
+
+@keyframes shimmer {
+  from { background-position: 0%; }
+  to   { background-position: 200%; }
 }
 
 /* ---- Input ---- */
@@ -122,24 +136,25 @@ input[type="text"] {
   padding: 16px 20px;
   margin-bottom: 14px;
   border-radius: var(--radius-md);
-  border: 2px solid #e5e7eb;
+  border: 1px solid rgba(255,255,255,0.15);
   font-family: 'DM Sans', sans-serif;
   font-size: 1.05rem;
-  color: var(--text-dark);
-  background: #fafafa;
+  color: var(--text);
+  background: rgba(255,255,255,0.06);
+  backdrop-filter: blur(8px);
   transition: var(--transition);
   outline: none;
 }
 
 input[type="text"]::placeholder {
-  color: var(--text-muted);
+  color: var(--muted);
   font-weight: 300;
 }
 
 input[type="text"]:focus {
-  border-color: var(--accent);
-  background: #fff;
-  box-shadow: 0 0 0 4px rgba(255, 69, 0, 0.1);
+  border-color: rgba(255, 210, 0, 0.5);
+  background: rgba(255,255,255,0.09);
+  box-shadow: 0 0 0 4px rgba(255, 210, 0, 0.08);
 }
 
 /* ---- Bouton Ajouter ---- */
@@ -148,21 +163,21 @@ button {
   padding: 16px;
   border-radius: var(--radius-md);
   border: none;
-  background: linear-gradient(135deg, var(--green), #16a34a);
-  color: white;
+  background: linear-gradient(135deg, #11998e, #38ef7d);
+  color: #001a10;
   font-family: 'Syne', sans-serif;
   font-size: 1.05rem;
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: 0.3px;
   cursor: pointer;
   transition: var(--transition);
-  box-shadow: var(--shadow-btn);
+  box-shadow: 0 4px 18px rgba(56, 239, 125, 0.3);
 }
 
 button:hover {
-  background: linear-gradient(135deg, var(--green-hover), #15803d);
+  background: linear-gradient(135deg, #0f8578, #2bd96e);
   transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(34, 197, 94, 0.45);
+  box-shadow: 0 8px 28px rgba(56, 239, 125, 0.4);
 }
 
 button:active {
@@ -176,7 +191,7 @@ button:active {
   padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
 }
 
 /* ---- Item ---- */
@@ -185,33 +200,32 @@ button:active {
   align-items: center;
   gap: 14px;
   padding: 16px 18px;
-  background: #fff;
-  border: 1px solid #f0f0f5;
+  background: linear-gradient(135deg, rgba(71,118,230,0.12), rgba(142,84,233,0.08));
+  border: 1px solid rgba(142, 84, 233, 0.2);
   border-radius: var(--radius-md);
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
   transition: var(--transition);
   animation: fadeIn 0.3s ease both;
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateX(-10px); }
+  from { opacity: 0; transform: translateX(-12px); }
   to   { opacity: 1; transform: translateX(0); }
 }
 
 .todo-item:hover {
-  border-color: #ffe0d6;
-  box-shadow: 0 4px 16px rgba(255, 69, 0, 0.08);
-  transform: translateX(3px);
+  border-color: rgba(255, 210, 0, 0.3);
+  background: linear-gradient(135deg, rgba(247,151,30,0.1), rgba(255,210,0,0.06));
+  transform: translateX(4px);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
 }
 
-/* Checkbox custom */
+/* Checkbox */
 .todo-item input[type="checkbox"] {
   width: 20px;
   height: 20px;
-  accent-color: var(--accent);
+  accent-color: #ffd200;
   cursor: pointer;
   flex-shrink: 0;
-  border-radius: 4px;
 }
 
 /* Texte tâche */
@@ -219,78 +233,59 @@ button:active {
   flex-grow: 1;
   font-size: 1.05rem;
   font-weight: 400;
-  color: var(--text-dark);
+  color: var(--text);
   transition: var(--transition);
 }
 
 /* Tâche complétée */
+.completed,
 .todo-item input[type="checkbox"]:checked + span {
   text-decoration: line-through;
-  color: var(--text-muted);
+  color: var(--muted);
 }
 
 /* Bouton Supprimer */
 .todo-item button {
   width: auto;
   padding: 8px 18px;
-  font-size: 0.88rem;
-  font-weight: 600;
-  background: linear-gradient(135deg, var(--red), #dc2626);
-  box-shadow: var(--shadow-del);
+  font-size: 0.85rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--red-dark), var(--red));
+  color: #fff;
+  box-shadow: 0 4px 14px rgba(230, 57, 70, 0.35);
   border-radius: var(--radius-sm);
   flex-shrink: 0;
-  letter-spacing: 0.2px;
 }
 
 .todo-item button:hover {
-  background: linear-gradient(135deg, var(--red-hover), #b91c1c);
+  background: linear-gradient(135deg, #c1121f, #e63946);
   transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(239, 68, 68, 0.45);
+  box-shadow: 0 8px 22px rgba(230, 57, 70, 0.45);
 }
 
 /* ---- Compteur ---- */
 .todo-count {
   margin-top: 20px;
   text-align: center;
-  font-size: 0.88rem;
-  color: var(--text-muted);
+  font-size: 0.85rem;
+  color: var(--muted);
   font-weight: 400;
+  letter-spacing: 0.05em;
 }
 
 /* ---- Responsive ---- */
 @media (max-width: 640px) {
   .todo-app {
-    padding: 30px 24px;
-    border-radius: 16px;
+    padding: 30px 22px;
+    border-radius: 18px;
   }
-
-  h1 {
-    font-size: 2rem;
-  }
-
-  input[type="text"],
-  button {
-    font-size: 1rem;
-    padding: 14px 16px;
-  }
-
-  .todo-item {
-    padding: 14px 14px;
-    gap: 10px;
-  }
-
-  .todo-item span {
-    font-size: 0.95rem;
-  }
-
-  .todo-item button {
-    padding: 7px 13px;
-    font-size: 0.82rem;
-  }
+  h1 { font-size: 2rem; }
+  input[type="text"], button { font-size: 1rem; padding: 14px 16px; }
+  .todo-item { padding: 13px 14px; gap: 10px; }
+  .todo-item span { font-size: 0.95rem; }
+  .todo-item button { padding: 7px 12px; font-size: 0.8rem; }
 }
 
 @media (max-width: 380px) {
-  h1 {
-    font-size: 1.7rem;
-  }
+  h1 { font-size: 1.7rem; }
 }
